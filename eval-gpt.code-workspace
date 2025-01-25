@@ -1,0 +1,50 @@
+{
+    "folders": [
+      {
+        "path": "backend",
+        "name": "backend"
+      },
+      {
+        "path": "webui",
+        "name": "frontend"
+      },
+      {
+        "path": ".",
+        "name": "root"
+      }
+    ],
+    "settings": {
+      "go.toolsEnvVars": {
+        "GO111MODULE": "on",
+        "GOPROXY": "https://goproxy.cn,direct",
+        "GONOPROXY": "none;"
+      }
+    },
+    "launch": {
+      "version": "0.2.0",
+      "configurations": [
+        {
+          "type": "go",
+          "request": "launch",
+          "name": "Server",
+          "cwd": "${workspaceFolder:backend}",
+          "program": "${workspaceFolder:backend}/"
+        },
+        {
+          "type": "node",
+          "request": "launch",
+          "cwd": "${workspaceFolder:frontend}",
+          "name": "WebUI",
+          "runtimeExecutable": "npm",
+          "runtimeArgs": ["run", "dev"]
+        }
+      ],
+      "compounds": [
+        {
+          "name": "Both (Server & WebUI)",
+          "configurations": ["Server", "WebUI"],
+          "stopAll": true
+        }
+      ]
+    }
+  }
